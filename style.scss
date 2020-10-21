@@ -1,0 +1,164 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #111;
+    color: white;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+.hide {
+    display: none;
+}
+
+.main-page, game-page {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.main-content, game-content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.main-content h1 {
+    font-size: 3rem;
+    margin: 0 0 0.8em;
+    width: 100%;
+}
+
+.main-menus {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 120%;
+    transform: translateX(-7%);
+}
+
+.main-menus > div {
+    background-color: #111;
+    border: 2px solid #ddd;
+    border-radius: 5%;
+    padding: 0.4em;
+    display: flex;
+    justify-content: space-evenly;
+    cursor: pointer;
+}
+
+.main-menus > div:hover {
+    animation: menuAnimation 2s infinite;
+}
+
+.rules {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #eee;
+    color: #111;
+    border-radius: 10px;
+    width: 50vw;
+    height: 64vh;
+    padding: 3vh 5vw;
+    z-index: 5;
+}
+
+.rules-blocker {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: transparent;
+    z-index: 1;
+}
+
+.rules.open, .rules-blocker.open {
+    display: block;
+}
+
+.game-info {
+    position: absolute;
+    width: 1200px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100vh;
+}
+
+.game-info > p {
+    position: absolute;
+    font-size: 1.2rem;
+    margin: 0.4em 0 0.0em
+}
+
+.game-info .player {
+    font-weight: 1000;
+}
+
+.game-info .level {
+    top: calc(1.2rem + 0.4em);
+}
+
+.game-info .dir {
+    top: 100%;
+    transform: translateY(-300%)
+}
+
+.game-info #pl-two {
+    right: 0;
+}
+
+.game-board {
+    position: absolute;
+    width: 1200px;
+    height: 80vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 10px solid #fff;
+}
+
+div.snake {
+    width: 0.3em;
+    height: 0.3em;
+    background-color: #fff;
+}
+
+#pl-one.snake {
+    position: absolute;
+    top: 20%;
+    left: 300px;
+}
+
+#pl-two.snake {
+    position: absolute;
+    top: 80%;
+    left: 900px;
+}
+
+
+@keyframes menuAnimation {
+    0% {
+        color: #fff;
+        background-color: #111;
+        border: 2px solid #ddd;
+        border-radius: 5%;
+    }
+    50% {
+        color: #111;
+        background-color: #fff;
+        border: 2px solid #333;
+        border-radius: 5%;
+
+    }
+    100% {
+        color: #fff;
+        background-color: #111;
+        border: 2px solid #ddd;
+        border-radius: 5%;
+    }
+}
