@@ -50,4 +50,9 @@ const checkBorders = () => {
         gameRunning = false
         console.log("Player one lost!")
     }
+    if (snake_two.left <= 0 || snake_two.left >= 1200) {
+        gameRunning = false
+        console.log("Player two lost!")
+    }
+    
 }

@@ -35,20 +35,18 @@ body {
     justify-content: space-between;
     width: 120%;
     transform: translateX(-7%);
-}
-
-.main-menus > div {
-    background-color: #111;
-    border: 2px solid #ddd;
-    border-radius: 5%;
-    padding: 0.4em;
-    display: flex;
-    justify-content: space-evenly;
-    cursor: pointer;
-}
-
-.main-menus > div:hover {
-    animation: menuAnimation 2s infinite;
+    & > div {
+        background-color: #111;
+        border: 2px solid #ddd;
+        border-radius: 5%;
+        padding: 0.4em;
+        display: flex;
+        justify-content: space-evenly;
+        cursor: pointer;
+    }
+    & > div:hover {
+        animation: menuAnimation 2s infinite;
+    }
 }
 
 .rules {
@@ -64,6 +62,9 @@ body {
     height: 64vh;
     padding: 3vh 5vw;
     z-index: 5;
+    &.open {
+        display: block;
+    }
 }
 
 .rules-blocker {
@@ -75,10 +76,9 @@ body {
     right: 0;
     background-color: transparent;
     z-index: 1;
-}
-
-.rules.open, .rules-blocker.open {
-    display: block;
+    &.open {
+        display: block;
+    }
 }
 
 .game-info {
@@ -87,29 +87,24 @@ body {
     left: 50%;
     transform: translateX(-50%);
     height: 100vh;
-}
-
-.game-info > p {
-    position: absolute;
-    font-size: 1.2rem;
-    margin: 0.4em 0 0.0em
-}
-
-.game-info .player {
-    font-weight: 1000;
-}
-
-.game-info .level {
-    top: calc(1.2rem + 0.4em);
-}
-
-.game-info .dir {
-    top: 100%;
-    transform: translateY(-300%)
-}
-
-.game-info #pl-two {
-    right: 0;
+    & > p {
+        position: absolute;
+        font-size: 1.2rem;
+        margin: 0.4em 0 0.0em
+    }
+    & .player {
+        font-weight: 1000;
+    }
+    & .level {
+        top: calc(1.2rem + 0.4em);
+    }
+    & .dir {
+        top: 100%;
+        transform: translateY(-300%)
+    }
+    & #pl-two {
+        right: 0;
+    }
 }
 
 .game-board {

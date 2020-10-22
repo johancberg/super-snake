@@ -78,6 +78,10 @@ body {
   z-index: 5;
 }
 
+.rules.open {
+  display: block;
+}
+
 .rules-blocker {
   display: none;
   position: fixed;
@@ -89,7 +93,7 @@ body {
   z-index: 1;
 }
 
-.rules.open, .rules-blocker.open {
+.rules-blocker.open {
   display: block;
 }
 
