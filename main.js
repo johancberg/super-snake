@@ -1,3 +1,6 @@
+let twoPlayers = false; // True when there's two players.
+let gameRunning = false;
+
 $("#menu-one").click(function() {
     $("#main-screen").addClass('hide')
     $("#game-screen").removeClass('hide')
@@ -5,6 +8,7 @@ $("#menu-one").click(function() {
 })
 
 $("#menu-two").click(function() {
+    twoPlayers = true;
     $("#main-screen").addClass('hide')
     $("#game-screen").removeClass('hide')
     $(".game-info #pl-two").removeClass('hide')
@@ -23,9 +27,16 @@ $(".rules-blocker").click(function() {
     }
 })
 
-let gameRunning = true;
+$("#play-again").click(() => {
+    $("#end-screen").addClass('hide')
+    $("#main-screen").removeClass('hide')
+    twoPlayers = false;
+    gameRunning = false;
+})
+
 
 async function gameStart() {
+    gameRunning = true;
     let i = 0;
     while (gameRunning) {
         await moveSnake()
@@ -39,7 +50,7 @@ const delay = (ms) => {
 
 const moveSnake = () => {
         let left = $("div#pl-one.snake").position().left
-        $("div#pl-one.snake").css('left', left+5+'px')
+        $("div#pl-one.snake").css('left', left+10+'px')
         checkBorders()
 }
 
@@ -48,10 +59,17 @@ const checkBorders = () => {
     const snake_two = $("div#pl-two.snake").position()
     if (snake_one.left <= 0 || snake_one.left >= 1200) {
         gameRunning = false
+        $("#game-screen").addClass('hide')
+        $("#end-screen").removeClass('hide')
+        twoPlayers ? $("#the-winner").html("Player 2 won!") : $("#the-winner").html("You lost!");
         console.log("Player one lost!")
+
     }
-    if (snake_two.left <= 0 || snake_two.left >= 1200) {
+    if (twoPlayers && (snake_two.left <= 0 || snake_two.left >= 1200)) {
         gameRunning = false
+        $("#game-screen").addClass('hide')
+        $("#end-screen").removeClass('hide')
+        twoPlayers ? $("#the-winner").html("Player 1 won!") : $("#the-winner").html("You won!");
         console.log("Player two lost!")
     }
     

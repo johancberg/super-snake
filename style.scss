@@ -32,9 +32,9 @@ body {
 
 .main-menus {
     display: inline-flex;
-    justify-content: space-between;
-    width: 120%;
-    transform: translateX(-7%);
+    justify-content: space-around;
+    width: 140%;
+    transform: translateX(-12%);
     & > div {
         background-color: #111;
         border: 2px solid #ddd;
