@@ -32,6 +32,10 @@ $("#play-again").click(() => {
     $("#main-screen").removeClass('hide')
     twoPlayers = false;
     gameRunning = false;
+    $("div#pl-one.snake").css('left', '300px')
+    $("div#pl-one.snake").css('top', '125px')
+    $("div#pl-two.snake").css('left', '900px')
+    $("div#pl-one.snake").css('top', '500px')
 })
 
 
