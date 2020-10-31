@@ -32,16 +32,25 @@ $("#play-again").click(() => {
     $("#main-screen").removeClass('hide')
     twoPlayers = false;
     gameRunning = false;
-    $("div#pl-one.snake").css('left', '300px')
-    $("div#pl-one.snake").css('top', '125px')
-    $("div#pl-two.snake").css('left', '900px')
-    $("div#pl-one.snake").css('top', '500px')
+    $("div#pl-one.snake").css('left', 300+'px')
+    $("div#pl-one.snake").css('top', 125+'px')
+    $("div#pl-two.snake").css('left', 900+'px')
+    $("div#pl-two.snake").css('top', 500+'px')
+    frontLeft = 5
+    frontDown = 0
+    left = 0
+    up = 0
 })
 
+let left, up
+let frontLeft = 5
+let frontDown = 0
 
+// CONTROLLERS!
 async function gameStart() {
+    left = $("div#pl-one.snake").position().left
+    up = $("div#pl-one.snake").position().top
     gameRunning = true;
-    let i = 0;
     while (gameRunning) {
         await moveSnake()
         await delay(100)
@@ -52,10 +61,31 @@ const delay = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 
+
 const moveSnake = () => {
-        let left = $("div#pl-one.snake").position().left
-        $("div#pl-one.snake").css('left', left+10+'px')
-        checkBorders()
+    left = left + frontLeft
+    up = up + frontDown
+    $('html').keydown((event) => {
+        if (event.which == 65) { // 37, 65 is left & 39, 68 is right
+            frontLeft = frontLeft - 0.1
+            frontDown = frontDown - 0.1
+            console.log(left)
+        } else if (event.which == 68) {
+            frontLeft = frontLeft - 0.1
+            frontDown = frontDown + 0.1
+        } 
+        /*if (event.which == 37) { // 37 is left & 39 is right
+            frontLeft = frontLeft - 0.1
+            frontDown = frontDown - 0.1
+            console.log(left)
+        } else if (event.which == 39) {
+            frontLeft = frontLeft - 0.1
+            frontDown = frontDown + 0.1
+        }*/
+    })
+    $("div#pl-one.snake").css('left', left+'px')
+    $("div#pl-one.snake").css('top', up+'px')
+    checkBorders()
 }
 
 const checkBorders = () => {
@@ -66,15 +96,12 @@ const checkBorders = () => {
         $("#game-screen").addClass('hide')
         $("#end-screen").removeClass('hide')
         twoPlayers ? $("#the-winner").html("Player 2 won!") : $("#the-winner").html("You lost!");
-        console.log("Player one lost!")
-
     }
     if (twoPlayers && (snake_two.left <= 0 || snake_two.left >= 1200)) {
         gameRunning = false
         $("#game-screen").addClass('hide')
         $("#end-screen").removeClass('hide')
         twoPlayers ? $("#the-winner").html("Player 1 won!") : $("#the-winner").html("You won!");
-        console.log("Player two lost!")
     }
     
 }
