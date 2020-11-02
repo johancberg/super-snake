@@ -40,11 +40,12 @@ $("#play-again").click(() => {
     frontDown = 0
     left = 0
     up = 0
+    degree = 45
 })
 
 let left, up
-let frontLeft = 5
-let frontDown = 0
+let speed = 5
+let degree = -45
 
 // CONTROLLERS!
 async function gameStart() {
@@ -62,17 +63,28 @@ const delay = (ms) => {
 }
 
 
-const moveSnake = () => {
-    left = left + frontLeft
-    up = up + frontDown
-    $('html').keydown((event) => {
+ function moveSnake() {
+    //left = left + frontLeft
+    //up = up + frontDown
+    left = left + speed * Math.cos(degree * Math.PI / 180);
+    up = up + speed * Math.sin(degree * Math.PI / 180);
+    $('html').keydown(async (event) => {
         if (event.which == 65) { // 37, 65 is left & 39, 68 is right
-            frontLeft = frontLeft - 0.1
-            frontDown = frontDown - 0.1
-            console.log(left)
+            degree = (degree - 10) % 180
+            await delay(100)
+            console.log(degree)
+            left = left + speed * Math.cos(degree * Math.PI / 180);
+            up = up - speed * Math.sin(degree * Math.PI / 180);
+            //frontLeft = degree / 10
+            //frontDown = frontDown - 0.1
         } else if (event.which == 68) {
-            frontLeft = frontLeft - 0.1
-            frontDown = frontDown + 0.1
+            degree = (degree + 10) % 180
+            await delay(100)
+            console.log(degree)
+            left = left + speed * Math.cos(degree * Math.PI / 180);
+            up = up - speed * Math.sin(degree * Math.PI / 180);
+            //frontLeft = frontLeft - 0.1
+            //frontDown = frontDown + 0.1
         } 
         /*if (event.which == 37) { // 37 is left & 39 is right
             frontLeft = frontLeft - 0.1
