@@ -53,15 +53,9 @@ async function gameStart() {
     up = $("div#pl-one.snake").position().top
     gameRunning = true;
     while (gameRunning) {
-        await moveSnake()
-        await delay(100)
+        setTimeout(moveSnake(), 500)
     }
 }
-
-const delay = (ms) => {
-    return new Promise(resolve => setTimeout(resolve, ms))
-}
-
 
  function moveSnake() {
     //left = left + frontLeft
@@ -71,7 +65,6 @@ const delay = (ms) => {
     $('html').keydown(async (event) => {
         if (event.which == 65) { // 37, 65 is left & 39, 68 is right
             degree = (degree - 10) % 180
-            await delay(100)
             console.log(degree)
             left = left + speed * Math.cos(degree * Math.PI / 180);
             up = up - speed * Math.sin(degree * Math.PI / 180);
@@ -79,7 +72,6 @@ const delay = (ms) => {
             //frontDown = frontDown - 0.1
         } else if (event.which == 68) {
             degree = (degree + 10) % 180
-            await delay(100)
             console.log(degree)
             left = left + speed * Math.cos(degree * Math.PI / 180);
             up = up - speed * Math.sin(degree * Math.PI / 180);
